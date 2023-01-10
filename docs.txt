@@ -1,0 +1,69 @@
+- Cài đặt: 
+    + Bên phía server: 
+        npm i các thư viện
+        chạy npm init để hoàn thành file package.json
+        create index.js
+-Tìm hiểu: 
+    + Phía be:
+        - Tìm hiểu kỹ thằng material ui: thằng theme chẳng hạn
+        - Tìm hiểu kỹ về thằng multer
+        - Tìm hiểu về req.body, req.query, req.params
+            + req.body: The req.body property contains 
+                key-value pairs of data submitted in 
+                the request body. By default, it is 
+                undefined and is populated when you use 
+                a middleware called body-parsing such as 
+                express.urlencoded() or express.json().
+                Thằng này là cái thằng mình lấy từ form lên.
+
+            + req.query: The req.query property is 
+                an object containing the property 
+                for each query string parameter in 
+                the route.
+                app.get('/user', function (req, res) {
+                    console.log("Name: ", req.query.name);
+                    console.log("Age:", req.query.age);
+                    res.send();
+                });
+                http://localhost:3000/profile?name=Gourav
+                -> Kết quả: Gourav
+
+
+            + req.params: The req.params property is 
+                an object containing properties mapped 
+                to the named route “parameters”. 
+                For example, if you have the route /student/:id, 
+                then the “id” property is available as req.params.id. 
+                This object defaults to {}.
+
+                student.get('/profile/:start/:end', function (req, res) {
+                    console.log("Starting Page: ", req.params['start']);
+                    console.log("Ending Page: ", req.params['end']);
+                    res.send();
+                })
+                http://localhost:3000/student/profile/12/17
+                -> Kết quả: Starting Page:  12
+                            Ending Page:  17
+    + Phía fe:
+        + Tìm hiểu kỹ thằng này redux-persist: 
+            * Redux Persist nhận vào Redux state object của bạn 
+            và lưu nó vào các bộ lưu trữ nội bộ. Sau đó khi app
+            khởi động thì nó sẽ lấy các state này ra và lưu trở lại vào Redux.
+
+            * Khi tạo Redux store, truyền vào hàm createStore của bạn một hàm 
+            persistReducer có tác dụng đóng gói reducer gốc trong app của bạn. 
+            Một khi store đã được khởi tạo, truyền nó vào hàm persistStore để 
+            đảm bảo Redux state sẽ được lưu vào storage mỗi khi nó thay đổi.
+        + Tìm hiểu về thằng new FormData()
+        + Tìm hiểu về thằng Object.key()
+- Cái cơ chế của thằng addRemoveFriend nó là ntn:
+    + Khi tao kết bn với mày thì tao là bạn mày và mày cũng là bạn tao
+    nên là khi remove thì tao hủy kết bạn với mày thì mày với tao 
+    cx không là bạn bè nữa.
+
+- Logic hoạt động: 
+    Về thằng login: 
+        + Lấy email, password từ form qua req.body
+        + Sau đó find trong database
+        + Nếu có mã hóa mật khẩu thì thêm bước check mật khẩu.
+        + Sau đó json ra thôi.
